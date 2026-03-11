@@ -10,6 +10,7 @@ spec:
     chart: mlflow
     targetRevision: 7.1.3
     helm:
+      version: v3
       values: |
         service:
           type: ClusterIP
