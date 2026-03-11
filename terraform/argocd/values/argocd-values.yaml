@@ -1,0 +1,12 @@
+server:
+  extraArgs:
+    - --insecure
+  service:
+    type: ClusterIP # В Minikube ми використаємо port-forward
+
+controller:
+  metrics:
+    enabled: false # Економимо ресурси ноутбука
+
+rbac:
+  policy.default: role:admin # Для навчання дамо собі повні права
