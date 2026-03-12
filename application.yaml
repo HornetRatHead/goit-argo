@@ -20,7 +20,7 @@ spec:
           image:
             registry: docker.io
             repository: bitnami/postgresql
-            tag: 15.8.0-debian-12-r1
+            tag: latest
           primary:
             persistence:
               enabled: false
@@ -30,18 +30,19 @@ spec:
           enabled: true
           image:
             registry: docker.io
-            repository: bitnami/minio
-            tag: 2024.8.26-debian-12-r2
+            repository: minio/minio
+            tag: latest
           persistence:
             enabled: false
+          command: ["minio", "server", "/data", "--console-address", ":9001"]
         tracking:
           image:
-            tag: "latest"
+            tag: latest
           persistence:
             enabled: false
         backend:
           image:
-            tag: "latest"
+            tag: latest
   destination:
     server: https://kubernetes.default.svc
     namespace: mlflow-app
@@ -51,3 +52,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
