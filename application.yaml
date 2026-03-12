@@ -18,7 +18,7 @@ spec:
         postgresql:
           enabled: true
           image:
-            tag: "15"
+            tag: "15-debian-11"
           primary:
             persistence:
               enabled: false
@@ -27,12 +27,17 @@ spec:
         minio:
           enabled: true
           image:
-            tag: "latest"
+            tag: "2023.10.24"
           persistence:
             enabled: false
         tracking:
+          image:
+            tag: "latest"
           persistence:
             enabled: false
+        backend:
+          image:
+            tag: "latest"
   destination:
     server: https://kubernetes.default.svc
     namespace: mlflow-app
