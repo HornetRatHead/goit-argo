@@ -31,13 +31,16 @@ spec:
           image:
             registry: docker.io
             repository: minio/minio
-            tag: latest
+            tag: "RELEASE.2025-10-15T17-29-55Z"
           persistence:
             enabled: false
+          auth:
+            rootUser: "minioadmin"
+            rootPassword: "minioadmin"
           command: ["minio", "server", "/data", "--console-address", ":9001"]
         tracking:
-          image:
-            tag: latest
+            repository: ghcr.io/mlflow/mlflow
+            tag: "v2.15.1"
           persistence:
             enabled: false
         backend:
