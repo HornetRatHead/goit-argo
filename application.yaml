@@ -17,6 +17,8 @@ spec:
           port: 5000
         postgresql:
           enabled: true
+          image:
+            tag: "15"
           primary:
             persistence:
               enabled: false
@@ -24,6 +26,8 @@ spec:
             postgresPassword: mlflowpass
         minio:
           enabled: true
+          image:
+            tag: "latest"
           persistence:
             enabled: false
         tracking:
