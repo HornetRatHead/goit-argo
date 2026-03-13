@@ -6,52 +6,42 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/HornetRatHead/goit-argo.git
-    targetRevision: main
-    path: mlflow
+    repoURL: registry-1.docker.io/bitnamicharts
+    chart: mlflow
+    targetRevision: 5.2.1
     helm:
-      version: v3
       values: |
-        global:
-          security:
-            allowInsecureImages: true
-
-        service:
-          type: ClusterIP
-          port: 5000
-
-        postgresql:
+        minio:
           enabled: true
           image:
             registry: docker.io
-            repository: bitnami/postgresql
+            repository: minio/minio
+            tag: latest
+          args: ["server", "/data", "--console-address", ":9001"]
+          podSecurityContext:
+            fsGroup: 1000
+          containerSecurityContext:
+            runAsUser: 1000
+            runAsNonRoot: true
+          persistence:
+            enabled: false
+          auth:
+            rootUser: "minioadmin"
+            rootPassword: "minioadmin"
+
+        postgresql:
+          image:
             tag: "latest"
           primary:
             persistence:
               enabled: false
-          auth:
-            postgresPassword: mlflowpass
-
-        minio:
-          image:
-            repository: minio/minio
-            tag: "latest"
-          args: ["minio", "server", "/data", "--console-address", ":9001"]
-          auth:
-            rootUser: "minioadmin"
-            rootPassword: "minioadmin"
-          persistence:
-            enabled: false
 
         tracking:
           image:
-            tag: "latest"
+            tag: 3.3.2
           persistence:
             enabled: false
-
-        backend:
-          image:
-            tag: "latest"
+          initContainers: []
 
   destination:
     server: https://kubernetes.default.svc
@@ -62,4 +52,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-
