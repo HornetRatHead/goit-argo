@@ -34,7 +34,7 @@ spec:
           image:
             registry: docker.io
             repository: minio/minio
-            tag: "RELEASE.2025-10-15T17-29-55Z"
+            tag: "RELEASE.2024-08-29T01-25-00Z"
           persistence:
             enabled: false
           command: ["minio", "server", "/data", "--console-address", ":9001"]
