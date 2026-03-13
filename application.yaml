@@ -45,7 +45,6 @@ spec:
             rootPassword: "minioadmin"
         tracking:
           image:
-            repository: ghcr.io/mlflow/mlflow
             tag: "latest"
           persistence:
             enabled: false
