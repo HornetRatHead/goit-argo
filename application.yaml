@@ -44,10 +44,6 @@ spec:
             rootUser: "minioadmin"
             rootPassword: "minioadmin"
         tracking:
-          initContainers:
-            image:
-              repository: busybox
-              tag: "latest"
           image:
             repository: ghcr.io/mlflow/mlflow
             tag: "latest"
