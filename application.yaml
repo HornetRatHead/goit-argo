@@ -13,6 +13,9 @@ spec:
       values: |
         minio:
           enabled: true
+          global:
+            security:
+              allowInsecureImages: true
           image:
             registry: docker.io
             repository: minio/minio
