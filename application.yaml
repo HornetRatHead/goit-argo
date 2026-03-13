@@ -35,15 +35,18 @@ spec:
             registry: docker.io
             repository: minio/minio
             tag: "latest"
-          args: ["server", "/data", "--console-address", ":9001"]
+          args: ["minio", "server", "/data", "--console-address", ":9001"]
+          podSecurityContext:
+            fsGroup: 1000
           containerSecurityContext:
-            runAsUser: 0
-          persistence:
-            enabled: false
-          command: ["minio", "server", "/data", "--console-address", ":9001"]
+            runAsUser: 1000
+            runAsGroup: 1000
+            runAsNonRoot: true
           auth:
             rootUser: "minioadmin"
             rootPassword: "minioadmin"
+          persistence:
+            enabled: false
         tracking:
           image:
             tag: "latest"
