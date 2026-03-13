@@ -11,21 +11,17 @@ spec:
     targetRevision: 5.1.17
     helm:
       values: |
-        minio:
-          enabled: true
-          global:
+        global:
             security:
               allowInsecureImages: true
-          image:
-            registry: docker.io
-            repository: minio/minio
-            tag: latest
-          args: ["server", "/data", "--console-address", ":9001"]
+        minio:
+          enabled: true
           podSecurityContext:
+            enabled: true
             fsGroup: 1000
           containerSecurityContext:
+            enabled: true
             runAsUser: 1000
-            runAsNonRoot: true
           persistence:
             enabled: false
           auth:
@@ -33,15 +29,16 @@ spec:
             rootPassword: "minioadmin"
 
         postgresql:
-          image:
-            tag: "latest"
+          enabled: true
           primary:
             persistence:
               enabled: false
 
         tracking:
           image:
-            tag: 3.3.2
+            registry: ghcr.io
+            repository: mlflow/mlflow
+            tag: latest
           persistence:
             enabled: false
           initContainers: []
