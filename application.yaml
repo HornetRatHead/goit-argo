@@ -35,6 +35,8 @@ spec:
             registry: docker.io
             repository: minio/minio
             tag: "latest"
+          containerSecurityContext:
+            runAsUser: 0
           persistence:
             enabled: false
           command: ["minio", "server", "/data", "--console-address", ":9001"]
@@ -42,6 +44,10 @@ spec:
             rootUser: "minioadmin"
             rootPassword: "minioadmin"
         tracking:
+          initContainers:
+            image:
+              repository: busybox
+              tag: "latest"
           image:
             repository: ghcr.io/mlflow/mlflow
             tag: "latest"
