@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: registry-1.docker.io/bitnamicharts
     chart: mlflow
-    targetRevision: 5.2.1
+    targetRevision: 5.1.17
     helm:
       values: |
         minio:
