@@ -35,6 +35,7 @@ spec:
             registry: docker.io
             repository: minio/minio
             tag: "latest"
+          args: ["server", "/data", "--console-address", ":9001"]
           containerSecurityContext:
             runAsUser: 0
           persistence:
