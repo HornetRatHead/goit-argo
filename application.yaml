@@ -23,7 +23,7 @@ spec:
           image:
             registry: docker.io
             repository: bitnami/postgresql
-            tag: latest
+            tag: "latest"
           primary:
             persistence:
               enabled: false
@@ -34,7 +34,7 @@ spec:
           image:
             registry: docker.io
             repository: minio/minio
-            tag: "RELEASE.2024-08-29T01-25-00Z"
+            tag: "latest"
           persistence:
             enabled: false
           command: ["minio", "server", "/data", "--console-address", ":9001"]
@@ -44,12 +44,12 @@ spec:
         tracking:
           image:
             repository: ghcr.io/mlflow/mlflow
-            tag: "v2.15.1"
+            tag: "latest"
           persistence:
             enabled: false
         backend:
           image:
-            tag: latest
+            tag: "latest"
   destination:
     server: https://kubernetes.default.svc
     namespace: mlflow-app
