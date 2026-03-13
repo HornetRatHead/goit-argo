@@ -15,9 +15,11 @@ spec:
         global:
           security:
             allowInsecureImages: true
+
         service:
           type: ClusterIP
           port: 5000
+
         postgresql:
           enabled: true
           image:
@@ -29,32 +31,28 @@ spec:
               enabled: false
           auth:
             postgresPassword: mlflowpass
+
         minio:
-          enabled: true
           image:
-            registry: docker.io
             repository: minio/minio
             tag: "latest"
           args: ["minio", "server", "/data", "--console-address", ":9001"]
-          podSecurityContext:
-            fsGroup: 1000
-          containerSecurityContext:
-            runAsUser: 1000
-            runAsGroup: 1000
-            runAsNonRoot: true
           auth:
             rootUser: "minioadmin"
             rootPassword: "minioadmin"
           persistence:
             enabled: false
+
         tracking:
           image:
             tag: "latest"
           persistence:
             enabled: false
+
         backend:
           image:
             tag: "latest"
+
   destination:
     server: https://kubernetes.default.svc
     namespace: mlflow-app
