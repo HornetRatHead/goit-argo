@@ -14,7 +14,8 @@ spec:
         global:
           security:
             allowInsecureImages: true
-          imagePullPolicy: IfNotPresent
+          image:
+            PullPolicy: IfNotPresent
 
         minio:
           enabled: true
@@ -30,6 +31,8 @@ spec:
             runAsUser: 1000
           persistence:
             enabled: false
+          command: ["/bin/sh"]
+          args: ["-c", "minio server /data --console-address :9001"]
           auth:
             rootUser: "minioadmin"
             rootPassword: "minioadmin"
